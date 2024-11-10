@@ -1,0 +1,6 @@
+openai
+streamlit 
+pandas
+seaborn
+matplotlib.ticker
+matplotlib.pyplot
