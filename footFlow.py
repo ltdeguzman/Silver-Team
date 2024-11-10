@@ -34,24 +34,16 @@ def get_market_details(center_name):
         3. Demographics of the types of people or groups who frequent the plaza (e.g., families, young professionals, tourists).
         4. Additional factors or details that a new restaurant owner should consider before deciding to open their business in this plaza, such as foot traffic trends, local competition, and general atmosphere.
         """
-
-        # Use the chat-based model with the correct endpoint
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # Updated model for chat-based completions
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt}
-            ],
-            max_tokens=500,  # Increase token limit to get detailed responses
-            temperature=0.7  # Set temperature for more diverse responses
-        )
         
-        return response['choices'][0]['message']['content'].strip()  # Return the detailed text
-
-    except openai.error.OpenAIError as e:
-        return f"An OpenAI error occurred: {str(e)}"
+        # Updated API call structure
+        response = openai.Completion.create(
+            model="gpt-3.5-turbo",
+            prompt="Provide details about the market: " + selected_place,
+            max_tokens=100  # Adjust token count based on your needs
+        )
+        return response['choices'][0]['text'].strip()  # Adjust to retrieve text response
     except Exception as e:
-        return f"An unexpected error occurred: {str(e)}"
+        return f"An error occurred: {str(e)}"
 
 # Display title and description
 st.title("Foot Flow: Analyzing San Jose Foot Traffic for New Restaurants")
@@ -113,7 +105,7 @@ else:
             st.write("No matching plazas found. Please adjust your selection criteria.")
         else:
             # Process the filtered data
-            filtered_data = filtered_data.dropna().applymap(lambda x: x.strip() if isinstance(x, str) else x)
+            filtered_data = filtered_data.dropna().map(lambda x: x.strip() if isinstance(x, str) else x)
 
             # Calculate monthly and yearly lease cost per location
             filtered_data['Monthly Lease Cost'] = filtered_data['Average Lease Rate ($/sq ft)'] * square_footage
