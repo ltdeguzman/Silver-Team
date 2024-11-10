@@ -1,6 +1,2 @@
 openai
 streamlit 
-pandas
-sns
-plt
-mtick
