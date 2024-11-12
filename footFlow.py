@@ -36,7 +36,7 @@ def get_market_details(center_name):
         """
         
         # Updated API call structure
-        response = openai.Completion.create(
+        response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             prompt="Provide details about the market: " + selected_place,
             max_tokens=100  # Adjust token count based on your needs
