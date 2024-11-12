@@ -25,23 +25,28 @@ def load_foot_traffic_data(file_path="sanjosefoottrafficvolume.csv"):
 # Function to get detailed market information using OpenAI
 def get_market_details(center_name):
     try:
-        # Enhanced prompt for gathering more comprehensive details
-        prompt = f"""
-        Provide a detailed analysis of the market for the plaza called '{center_name}'. 
-        Include the following information:
-        1. Pros and cons of the plaza.
-        2. Accessibility issues (e.g., parking, public transport access).
-        3. Demographics of the types of people or groups who frequent the plaza (e.g., families, young professionals, tourists).
-        4. Additional factors or details that a new restaurant owner should consider before deciding to open their business in this plaza, such as foot traffic trends, local competition, and general atmosphere.
-        """
+        # Define the messages array for the chat model
+        messages = [
+            {"role": "system", "content": "You are a market analyst providing insights for business owners."},
+            {"role": "user", "content": f"""
+            Provide a detailed analysis of the market for the plaza called '{center_name}'. 
+            Include the following information:
+            1. Pros and cons of the plaza.
+            2. Accessibility issues (e.g., parking, public transport access).
+            3. Demographics of the types of people or groups who frequent the plaza (e.g., families, young professionals, tourists).
+            4. Additional factors or details that a new restaurant owner should consider before deciding to open their business in this plaza, such as foot traffic trends, local competition, and general atmosphere.
+            """}
+        ]
         
-        # Updated API call structure
+        # Use the chat completion endpoint with messages
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            prompt="Provide details about the market: " + selected_place,
+            model="gpt-3.5-turbo",  # or "gpt-4" if available
+            messages=messages,
             max_tokens=100  # Adjust token count based on your needs
         )
-        return response['choices'][0]['text'].strip()  # Adjust to retrieve text response
+        
+        # Extract and return the assistant's response
+        return response['choices'][0]['message']['content'].strip()
     except Exception as e:
         return f"An error occurred: {str(e)}"
 
