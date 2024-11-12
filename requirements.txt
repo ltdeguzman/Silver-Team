@@ -1,4 +1,4 @@
-openai == 1.54.3
+openai==0.28
 streamlit 
 openai
 streamlit 
