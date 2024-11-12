@@ -1,13 +1,12 @@
 import streamlit as st
 import pandas as pd
 import openai
-import os
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 import seaborn as sns
 
 # Set your OpenAI API key (replace with your actual API key)
-openai.api_key = os.environ["OPENAI_API_KEY"]
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Set page config
 st.set_page_config(page_title="Foot Flow", layout="wide")
