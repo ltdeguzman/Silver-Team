@@ -42,7 +42,7 @@ def get_market_details(center_name):
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",  # or "gpt-4" if available
             messages=messages,
-            max_tokens=100  # Adjust token count based on your needs
+            max_tokens=5000  # Adjust token count based on your needs
         )
         
         # Extract and return the assistant's response
