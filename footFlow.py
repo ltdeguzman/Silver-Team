@@ -327,7 +327,7 @@ elif st.session_state.page == "Chatbot":
                     {"role": "system", "content": "You are a helpful assistant providing restaurant business advice for locations in San Jose."},
                     {"role": "user", "content": user_input}
                 ],
-                max_tokens=150
+                max_tokens=4096
             )
             st.markdown(f"<div class='chat-response'><strong>Chatbot:</strong> {response['choices'][0]['message']['content'].strip()}</div>", unsafe_allow_html=True)
         except Exception as e:
