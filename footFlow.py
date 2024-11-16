@@ -703,7 +703,7 @@ elif st.session_state.page == "Chatbot":
                 For every user question:
                 1. Interpret the question and infer the user's intention if it is unclear.
                 2. Provide a structured response:
-                   - **Answer**: Address the user's query directly.
+                   - Address the user's query directly.
                    - **Examples**: Provide real-world examples or case studies.
                    - **Steps/Actions**: List actionable steps where applicable.
                    - **Pro Tips**: Offer additional insights or expert recommendations.
@@ -721,7 +721,7 @@ elif st.session_state.page == "Chatbot":
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_input}
                 ],
-                max_tokens=1024  # Adjust token limit based on desired response length
+                max_tokens=4096  # Adjust token limit based on desired response length
             )
 
             # Extract and display the chatbot response
