@@ -5,3 +5,6 @@ streamlit
 pandas
 seaborn
 matplotlib
+plotly
+numpy
+scipy
