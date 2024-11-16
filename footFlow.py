@@ -671,17 +671,7 @@ elif st.session_state.page == "Restaurant Insights":
                                 </ul>
                             </div>
                         """, unsafe_allow_html=True)
-
-
-
-
-
-
-
-
-
-
-
+                        
 elif st.session_state.page == "Chatbot":
     st.markdown("<h1 style='color: white;'>Chatbot 🤖</h1>", unsafe_allow_html=True)
     
@@ -703,7 +693,7 @@ elif st.session_state.page == "Chatbot":
                 For every user question:
                 1. Interpret the question and infer the user's intention if it is unclear.
                 2. Provide a structured response:
-                   - Address the user's query directly.
+                   - **Answer**: Address the user's query directly.
                    - **Examples**: Provide real-world examples or case studies.
                    - **Steps/Actions**: List actionable steps where applicable.
                    - **Pro Tips**: Offer additional insights or expert recommendations.
